@@ -1,22 +1,25 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
-import toast from 'react-hot-toast';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useGetPokemonByNameQuery } from '../../redux/contacts/contactSlice';
+// import { nanoid } from 'nanoid';
+// import toast from 'react-hot-toast';
 import { Form } from './ContactForm.styled';
-import contactsActions from '../../redux/contacts-actions';
-import { getContacts } from '../../redux/selectors';
+// import contactsActions from '../../redux/contacts-actions';
+// import { getContacts } from '../../redux/selectors';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
+  // const { contacts, error, isLoading } = useGetPokemonByNameQuery();
 
-  const resetInput = () => {
-    setName('');
-    setNumber('');
-  };
+  // const contacts = useSelector(getContacts);
+  // const dispatch = useDispatch();
+
+  // const resetInput = () => {
+  //   setName('');
+  //   setNumber('');
+  // };
 
   const handleChange = e => {
     switch (e.target.name) {
@@ -33,29 +36,29 @@ export const ContactForm = () => {
     }
   };
 
-  const onSubmitContact = newContact => {
-    const isExistContact = contacts.find(
-      contact =>
-        contact.name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
-    );
+  // const onSubmitContact = newContact => {
+  //   const isExistContact = contacts.find(
+  //     contact =>
+  //       contact.name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+  //   );
 
-    if (isExistContact) {
-      toast.error(`${newContact.name} is already in contacts`);
-    } else {
-      dispatch(contactsActions.addContact(newContact));
-      resetInput();
-    }
-  };
+  //   if (isExistContact) {
+  //     toast.error(`${newContact.name} is already in contacts`);
+  //   } else {
+  //     dispatch(contactsActions.addContact(newContact));
+  //     resetInput();
+  //   }
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    onSubmitContact(newContact);
+    // const newContact = {
+    //   id: nanoid(),
+    //   name,
+    //   number,
+    // };
+    // onSubmitContact(newContact);
   };
 
   return (
