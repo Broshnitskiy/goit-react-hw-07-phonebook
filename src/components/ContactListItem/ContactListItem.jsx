@@ -1,20 +1,20 @@
+import { useDeleteContactMutation } from '../../redux/contacts/contactSlice';
 import PropTypes from 'prop-types';
 import { ListItem } from './ContactListItem.styled';
-// import { useDispatch } from 'react-redux';
-// import contactsActions from '../../redux/contacts-actions';
 
 export const ContactListItem = ({ id, name, number }) => {
-  // const dispatch = useDispatch();
-
-  // const deleteContact = contactId =>
-  //   dispatch(contactsActions.deleteContact(contactId));
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
     <ListItem>
       &#9742; {name}: {number};
-      {/* <button type="button" onClick={() => deleteContact(id)}>
+      <button
+        type="button"
+        disabled={isDeleting}
+        onClick={() => deleteContact(id)}
+      >
         Delete
-      </button> */}
+      </button>
     </ListItem>
   );
 };

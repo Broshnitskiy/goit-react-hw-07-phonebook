@@ -1,19 +1,13 @@
 // import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+
+import PropTypes from 'prop-types';
 import { Label } from './Filter.styled';
 // import contactsActions from '../../redux/contacts-actions';
 // import { getFilter } from '../../redux/selectors';
 
-export const Filter = () => {
+export const Filter = ({ filter, handleChange }) => {
   // const dispatch = useDispatch();
   // const filter = useSelector(getFilter);
-
-  const [filter, setFilter] = useState('');
-
-  const handleChange = e => {
-    // dispatch(contactsActions.changeFilter(e.target.value));
-    setFilter(e.target.value);
-  };
 
   return (
     <Label>
@@ -27,4 +21,9 @@ export const Filter = () => {
       />
     </Label>
   );
+};
+
+Filter.propTypes = {
+  value: PropTypes.string,
+  handleChange: PropTypes.func,
 };

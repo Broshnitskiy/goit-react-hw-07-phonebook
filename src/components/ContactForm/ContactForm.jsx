@@ -1,25 +1,18 @@
 import { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { useGetPokemonByNameQuery } from '../../redux/contacts/contactSlice';
-// import { nanoid } from 'nanoid';
-// import toast from 'react-hot-toast';
-import { Form } from './ContactForm.styled';
-// import contactsActions from '../../redux/contacts-actions';
-// import { getContacts } from '../../redux/selectors';
+import { useAddContactMutation } from '../../redux/contacts/contactSlice';
 
-export const ContactForm = () => {
+import toast from 'react-hot-toast';
+import { Form } from './ContactForm.styled';
+
+export const ContactForm = ({ contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [createContact] = useAddContactMutation();
 
-  // const { contacts, error, isLoading } = useGetPokemonByNameQuery();
-
-  // const contacts = useSelector(getContacts);
-  // const dispatch = useDispatch();
-
-  // const resetInput = () => {
-  //   setName('');
-  //   setNumber('');
-  // };
+  const resetInput = () => {
+    setName('');
+    setNumber('');
+  };
 
   const handleChange = e => {
     switch (e.target.name) {
@@ -36,29 +29,25 @@ export const ContactForm = () => {
     }
   };
 
-  // const onSubmitContact = newContact => {
-  //   const isExistContact = contacts.find(
-  //     contact =>
-  //       contact.name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
-  //   );
-
-  //   if (isExistContact) {
-  //     toast.error(`${newContact.name} is already in contacts`);
-  //   } else {
-  //     dispatch(contactsActions.addContact(newContact));
-  //     resetInput();
-  //   }
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
 
-    // const newContact = {
-    //   id: nanoid(),
-    //   name,
-    //   number,
-    // };
-    // onSubmitContact(newContact);
+    const newContact = {
+      name,
+      phone: number,
+    };
+
+    const isExistContact = contacts.find(
+      contact =>
+        contact.name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+    );
+
+    if (isExistContact) {
+      toast.error(`${newContact.name} is already in contacts`);
+    } else {
+      createContact(newContact);
+      resetInput();
+    }
   };
 
   return (
