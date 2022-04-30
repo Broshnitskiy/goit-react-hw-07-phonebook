@@ -1,5 +1,5 @@
 import { useDeleteContactMutation } from '../../redux/contacts/contactSlice';
-import PropTypes from 'prop-types';
+
 import { ListItem } from './ContactListItem.styled';
 
 export const ContactListItem = ({ id, name, number }) => {
@@ -8,23 +8,13 @@ export const ContactListItem = ({ id, name, number }) => {
   return (
     <ListItem>
       &#9742; {name}: {number};
-      <button
-        type="button"
-        disabled={isDeleting}
-        onClick={() => deleteContact(id)}
-      >
-        Delete
-      </button>
+      {isDeleting ? (
+        <p>Deleting...</p>
+      ) : (
+        <button type="button" onClick={() => deleteContact(id)}>
+          Delete
+        </button>
+      )}
     </ListItem>
   );
-};
-
-ContactListItem.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
 };

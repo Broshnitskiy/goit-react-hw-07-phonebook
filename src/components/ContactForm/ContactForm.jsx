@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useAddContactMutation } from '../../redux/contacts/contactSlice';
-
+import PropTypes from 'prop-types';
+import { Spinner } from '../Spinner/Spinner';
 import toast from 'react-hot-toast';
 import { Form } from './ContactForm.styled';
 
 export const ContactForm = ({ contacts }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [createContact] = useAddContactMutation();
+  const [createContact, { isLoading, isError }] = useAddContactMutation();
 
   const resetInput = () => {
     setName('');
@@ -52,6 +53,7 @@ export const ContactForm = ({ contacts }) => {
 
   return (
     <Form onSubmit={handleSubmit} autoComplete="off">
+      {isLoading && <Spinner />}
       <label>
         Name &#8594;
         <input
@@ -78,7 +80,20 @@ export const ContactForm = ({ contacts }) => {
           required
         />
       </label>
+
       <button type="submit">Add contact</button>
+      {isError && <p>Error adding contact</p>}
+      <></>
     </Form>
   );
+};
+
+ContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+    })
+  ),
 };
