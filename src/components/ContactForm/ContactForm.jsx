@@ -47,6 +47,7 @@ export const ContactForm = ({ contacts }) => {
       toast.error(`${newContact.name} is already in contacts`);
     } else {
       createContact(newContact);
+      toast.success('Successfully added!');
       resetInput();
     }
   };

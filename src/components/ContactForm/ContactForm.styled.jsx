@@ -7,6 +7,8 @@ export const Form = styled.form`
   align-items: flex-start;
   padding: 8px;
   margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid green;
 
   label {
@@ -17,6 +19,7 @@ export const Form = styled.form`
     align-items: center;
     margin-bottom: 20px;
     font-size: 20px;
+    font-weight: 500;
     border-left: 2px solid green;
   }
 

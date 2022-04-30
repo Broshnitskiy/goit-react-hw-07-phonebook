@@ -20,16 +20,33 @@ function App() {
       <Toaster />
 
       <section style={{ padding: '20px' }}>
-        <h1 style={{ marginBottom: '20px' }}>Phonebook</h1>
+        <h1
+          style={{
+            marginBottom: '20px',
+            textAlign: 'center',
+            color: 'blue',
+            fontSize: '50px',
+          }}
+        >
+          Phonebook
+        </h1>
         <ContactForm contacts={contacts} />
         <div>
           {contacts?.length !== 0 ? (
             <>
-              <h2>Contacts</h2>
+              <h2
+                style={{
+                  textAlign: 'center',
+                  color: 'green',
+                  fontSize: '40px',
+                }}
+              >
+                Contacts
+              </h2>
               <Filter value={filter} handleChange={handleChange} />
             </>
           ) : (
-            <p>No saved contacts</p>
+            <p style={{ textAlign: 'center' }}>No saved contacts</p>
           )}
 
           {isFetching && <Spinner />}

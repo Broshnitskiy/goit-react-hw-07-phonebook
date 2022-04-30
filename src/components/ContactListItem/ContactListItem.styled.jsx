@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const ListItem = styled.li`
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
-  margin-bottom: 8px;
+  margin-top: 30px;
+  margin-left: 30px;
+  flex-basis: calc(100% / 4 - 30px);
 
   button {
+    display: block;
     min-width: 80px;
     cursor: pointer;
     :hover {
